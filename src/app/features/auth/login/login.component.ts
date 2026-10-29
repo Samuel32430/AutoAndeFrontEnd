@@ -67,15 +67,15 @@ import { AuthService } from '../../../core/services/auth.service';
         </form>
 
         <div class="demo-users">
-          <span class="demo-title">Acceso rápido para demostración:</span>
+          <span class="demo-title">Acceso rápido de prueba (Auto2026*):</span>
           <div class="demo-buttons">
-            <button type="button" class="btn btn-secondary btn-sm" (click)="rellenarCredenciales('admin', 'admin123')">
+            <button type="button" class="btn btn-secondary btn-sm" (click)="rellenarCredenciales('admin', 'Auto2026*')">
               ADMIN
             </button>
-            <button type="button" class="btn btn-secondary btn-sm" (click)="rellenarCredenciales('asesor1', 'asesor123')">
+            <button type="button" class="btn btn-secondary btn-sm" (click)="rellenarCredenciales('asesor', 'Auto2026*')">
               ASESOR
             </button>
-            <button type="button" class="btn btn-secondary btn-sm" (click)="rellenarCredenciales('jefe1', 'jefe123')">
+            <button type="button" class="btn btn-secondary btn-sm" (click)="rellenarCredenciales('jefe', 'Auto2026*')">
               JEFE TALLER
             </button>
           </div>
