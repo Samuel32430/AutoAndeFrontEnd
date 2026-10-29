@@ -1,6 +1,6 @@
 export interface IngresoPorServicio {
-  servicioCodigo: string;
-  servicioNombre: string;
+  codigo: string;
+  servicio: string;
   cantidadTotal: number;
-  totalIngresos: number;
+  importeTotal: number;
 }

@@ -75,13 +75,13 @@ import { IngresoPorServicio } from '../../../core/models/reporte.model';
               </tr>
             </thead>
             <tbody>
-              @for (item of datos(); track item.servicioCodigo) {
+              @for (item of datos(); track item.codigo) {
                 <tr>
-                  <td><strong>{{ item.servicioCodigo }}</strong></td>
-                  <td>{{ item.servicioNombre }}</td>
+                  <td><strong>{{ item.codigo }}</strong></td>
+                  <td>{{ item.servicio }}</td>
                   <td class="text-center">{{ item.cantidadTotal }}</td>
                   <td class="text-right font-weight-bold">
-                    S/ {{ item.totalIngresos | number:'1.2-2' }}
+                    S/ {{ item.importeTotal | number:'1.2-2' }}
                   </td>
                 </tr>
               } @empty {
@@ -174,7 +174,7 @@ export class ReporteIngresosComponent implements OnInit {
   errorMensaje = signal<string | null>(null);
 
   granTotal = computed(() => {
-    return this.datos().reduce((acc, curr) => acc + (Number(curr.totalIngresos) || 0), 0);
+    return this.datos().reduce((acc, curr) => acc + (Number(curr.importeTotal) || 0), 0);
   });
 
   cantidadTotal = computed(() => {
