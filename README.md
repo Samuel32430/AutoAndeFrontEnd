@@ -1,59 +1,72 @@
-# Frontend
+# AutoAndes Web — SPA Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.1.
+Frontend Single Page Application (SPA) seguro desarrollado en Angular con componentes Standalone y Signals para el Examen Parcial II de Lenguaje de Programación II (Ciclo IV, Semestre 2026-2) en la Universidad Peruana Unión (UPeU).
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Tecnologías
+- **Angular 22** (Componentes Standalone, Signals y Directivas Estructurales)
+- **TypeScript 5.x / 6.x**
+- **Reactive Forms** (`FormGroup`, `FormArray`, `Validators`)
+- **RxJS**
+- **CSS3 Moderno** (Diseño responsivo, temas automotrices e impresión)
 
+---
+
+## 🛠️ Instrucciones de Ejecución
+
+### 1. Requisitos Previos
+- Node.js (v20 o superior recomendado).
+- Angular CLI instalado globalmente o mediante `npm run ng`.
+- AutoAndes Backend corriendo en `http://localhost:8080`.
+
+### 2. Levantar la Aplicación
+Desde la raíz del proyecto `AutoAndeFrontEnd`:
 ```bash
-ng serve
+npm start
+# O alternativamente:
+# npx ng serve
 ```
+La aplicación estará disponible inmediatamente en:
+👉 [http://localhost:4200](http://localhost:4200)
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 👥 Usuarios de Prueba (Anexo 10)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+| Usuario | Contraseña | Rol | Accesos en la SPA |
+| :--- | :--- | :--- | :--- |
+| **admin** | `Auto2026*` | `ADMIN` | Acceso completo a todos los módulos |
+| **asesor** | `Auto2026*` | `ASESOR` | Consulta de órdenes, emisión de nueva orden y gestión de vehículos |
+| **jefe** | `Auto2026*` | `JEFE_TALLER` | Catálogo de servicios, anulación de órdenes y reporte de ingresos |
+| **inactivo** | `Auto2026*` | `ASESOR` | Cuenta suspendida (muestra alerta de credenciales inválidas) |
 
-```bash
-ng generate component component-name
+*Nota: La pantalla de Login incluye botones de acceso rápido para pruebas inmediatas.*
+
+---
+
+## 🏛️ Arquitectura Modular (Angular Standalone)
 ```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
+src/app/
+├── core/
+│   ├── auth/         # Modelos de autenticación
+│   ├── guards/       # authGuard, invitadoGuard, permisoGuard
+│   ├── interceptors/ # authInterceptor (Bearer), errorInterceptor (401/403)
+│   ├── models/       # Interfaces DTO (Cliente, Servicio, Vehículo, Orden, Reporte)
+│   └── services/     # Servicios HTTP reactivos con Signals
+├── shared/
+│   └── directives/   # *appSiPermiso (renderizado condicional por rol/permiso)
+├── layout/
+│   ├── header/       # Perfil del usuario autenticado y botón de cierre de sesión
+│   ├── sidebar/      # Navegación reactiva según permisos RBAC
+│   └── main-layout/  # Contenedor principal con router-outlet
+├── features/
+│   ├── auth/login/   # Login independiente fuera del layout
+│   ├── servicios/    # Catálogo, cambio de estado (soft-delete) y modal reactivo
+│   ├── vehiculos/    # Listado, dropdown de clientes y validaciones (ABC-123)
+│   ├── ordenes/      # Formulario reactivo FormArray cabecera-detalle y consulta
+│   └── reportes/     # Reporte analítico de ingresos (JPQL) y vista de impresión
+└── shared-pages/
+    ├── acceso-denegado/ # Página 403 (preserva la sesión activa)
+    └── no-encontrado/   # Página 404
 ```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
